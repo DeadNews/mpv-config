@@ -24,7 +24,8 @@ end
 
 EXTENSIONS = Set {
     'mkv', 'avi', 'mp4', 'ogv', 'webm', 'rmvb', 'flv', 'wmv', 'mpeg', 'mpg', 'm4v', '3gp',
-    'mp3', 'wav', 'ogm', 'flac', 'm4a', 'wma', 'ogg', 'opus',
+    'mp3', 'wav', 'ogm', 'flac', 'm4a', 'wma', 'ogg', 'opus', 'm2ts', 'png', 'gif', 'jpg',
+    'webp',
 }
 
 function add_files_at(index, files)
