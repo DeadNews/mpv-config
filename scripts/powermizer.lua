@@ -2,13 +2,13 @@
 
 --[[
     https://github.com/kevinlekiller/mpv_scripts
-   
+
     Sets "PowerMizer" in Nvidia GPUs with the proprietary driver to
     "Maximum Performance" mode while mpv is playing.
     Sets "PowerMizer" back to "Adaptive" when mpv is idle or exits.
-    
+
     The script will try to automatically detect a GPU.
-    
+
     You can also manually set your GPU like this: --script-opts=powermizer-gpu="[gpu:1]"
     Find your GPU with this command: nvidia-settings -q gpus
 --]]
