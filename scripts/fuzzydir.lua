@@ -1,14 +1,31 @@
 --[[
-Determines the max depth of recursive search, should be >= 1
+	fuzzydir / by sibwaf / https://github.com/sibwaf/mpv-scripts
 
- 1 will disable recursion and only direct subdirectories would be found
- 2 will allow single recursion and direct subdirectories would be found along with their direct subdirectories
- ...
+	Allows using "**" wildcards in sub-file-paths and audio-file-paths
+    so you don't have to specify all the possible directory names.
 
-Please be careful when setting this value too high
-as it can result in awful performance or even stack overflow
+    Basically, allows you to do this and never have the need to edit any paths ever again:
+    audio-file-paths = **
+    sub-file-paths = **
+
+	MIT license - do whatever you want, but I'm not responsible for any possible problems.
+	Please keep the URL to the original repository. Thanks!
 ]]
-local max_search_depth = 1
+
+--[[
+    Configuration:
+
+    # max_search_depth
+
+    Determines the max depth of recursive search, should be >= 1
+
+    Examples for "sub-file-paths = **":
+    "max_search_depth = 1" => mpv will be able to find [xyz.ass, subs/xyz.ass]
+    "max_search_depth = 2" => mpv will be able to find [xyz.ass, subs/xyz.ass, subs/moresubs/xyz.ass]
+
+    Please be careful when setting this value too high as it can result in awful performance or even stack overflow
+]]
+local max_search_depth = 3
 
 local utils = require "mp.utils"
 
@@ -91,7 +108,7 @@ function explode(from, working_directory)
     local normalized = {}
     for index, path in pairs(result) do
         local normalized_path = normalize(path)
-        if not contains(normalized, normalized_path) then
+        if not contains(normalized, normalized_path) and normalized_path ~= normalize(working_directory) then
             table.insert(normalized, normalized_path)
         end
     end

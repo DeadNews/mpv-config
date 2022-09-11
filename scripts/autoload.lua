@@ -2,9 +2,21 @@
 -- the currently played file. It does so by scanning the directory a file is
 -- located in when starting playback. It sorts the directory entries
 -- alphabetically, and adds entries before and after the current file to
--- the internal playlist. (It stops if the it would add an already existing
+-- the internal playlist. (It stops if it would add an already existing
 -- playlist entry at the same position - this makes it "stable".)
 -- Add at most 5000 * 2 files when starting a file (before + after).
+
+--[[
+To configure this script use file autoload.conf in directory script-opts (the "script-opts"
+directory must be in the mpv configuration directory, typically ~/.config/mpv/).
+Example configuration would be:
+disabled=no
+images=no
+videos=yes
+audio=yes
+ignore_hidden=yes
+--]]
+
 MAXENTRIES = 5000
 
 local msg = require 'mp.msg'
@@ -12,7 +24,11 @@ local options = require 'mp.options'
 local utils = require 'mp.utils'
 
 o = {
-    disabled = false
+    disabled = false,
+    images = true,
+    videos = true,
+    audio = true,
+    ignore_hidden = true
 }
 options.read_options(o)
 
@@ -22,11 +38,29 @@ function Set (t)
     return set
 end
 
-EXTENSIONS = Set {
-    'mkv', 'avi', 'mp4', 'ogv', 'webm', 'rmvb', 'flv', 'wmv', 'mpeg', 'mpg', 'm4v', '3gp',
-    'mp3', 'wav', 'ogm', 'flac', 'm4a', 'wma', 'ogg', 'opus', 'm2ts', 'png', 'gif', 'jpg',
-    'webp',
+function SetUnion (a,b)
+    local res = {}
+    for k in pairs(a) do res[k] = true end
+    for k in pairs(b) do res[k] = true end
+    return res
+end
+
+EXTENSIONS_VIDEO = Set {
+    'mkv', 'avi', 'mp4', 'ogv', 'webm', 'rmvb', 'flv', 'wmv', 'mpeg', 'mpg', 'm4v', '3gp', 'm2ts'
 }
+
+EXTENSIONS_AUDIO = Set {
+    'mp3', 'wav', 'ogm', 'flac', 'm4a', 'wma', 'ogg', 'opus'
+}
+
+EXTENSIONS_IMAGES = Set {
+    'jpg', 'jpeg', 'png', 'tif', 'tiff', 'gif', 'webp', 'svg', 'bmp'
+}
+
+EXTENSIONS = Set {}
+if o.videos then EXTENSIONS = SetUnion(EXTENSIONS, EXTENSIONS_VIDEO) end
+if o.audio then EXTENSIONS = SetUnion(EXTENSIONS, EXTENSIONS_AUDIO) end
+if o.images then EXTENSIONS = SetUnion(EXTENSIONS, EXTENSIONS_IMAGES) end
 
 function add_files_at(index, files)
     index = index - 1
@@ -103,6 +137,7 @@ function find_and_add_entries()
     -- check if this is a manually made playlist
     if (pl_count > 1 and autoloaded == nil) or
        (pl_count == 1 and EXTENSIONS[string.lower(get_extension(filename))] == nil) then
+        msg.verbose("stopping: manually made playlist")
         return
     else
         autoloaded = true
@@ -115,10 +150,13 @@ function find_and_add_entries()
 
     local files = utils.readdir(dir, "files")
     if files == nil then
+        msg.verbose("no other files in directory")
         return
     end
     table.filter(files, function (v, k)
-        if string.match(v, "^%.") then
+        -- The current file could be a hidden file, ignoring it doesn't load other
+        -- files from the current directory.
+        if (o.ignore_hidden and not (v == filename) and string.match(v, "^%.")) then
             return false
         end
         local ext = get_extension(v)
