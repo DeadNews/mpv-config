@@ -4,7 +4,7 @@
 
 [![pre-commit.ci](https://results.pre-commit.ci/badge/github/DeadNews/mpv-config/main.svg)](https://results.pre-commit.ci/latest/github/DeadNews/mpv-config/main)
 
-# variants
+## variants
 
-- [pc](https://github.com/mpv-player/mpv)
-- [notebook](https://github.com/mpv-player/mpv/tree/notebook)
+- [pc](https://github.com/DeadNews/mpv-config)
+- [notebook](https://github.com/DeadNews/mpv-config/tree/notebook)
