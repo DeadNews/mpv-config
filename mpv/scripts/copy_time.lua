@@ -1,7 +1,8 @@
 require 'mp'
 
 function set_clipboard(text)
-    io.popen('xclip -sel clip', 'w'):write(text):close()
+    -- for wayland
+    io.popen('wl-copy', 'w'):write(text):close()
 end
 
 
