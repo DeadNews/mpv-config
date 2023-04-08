@@ -18,4 +18,3 @@
 - <https://iamscum.wordpress.com/guides/videoplayback-guide/mpv-conf>
 - <https://kokomins.wordpress.com/2019/10/14/mpv-config-guide>
 - <https://github.com/bjin/mpv-prescalers>
-- <https://github.com/mpv-player/mpv/wiki/GPU-Next-vs-GPU>
