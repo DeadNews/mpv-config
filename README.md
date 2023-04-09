@@ -25,7 +25,7 @@ dotbot -c install.conf.yaml
 - <https://iamscum.wordpress.com/guides/videoplayback-guide/mpv-conf>
 - <https://kokomins.wordpress.com/2019/10/14/mpv-config-guide>
 - <https://github.com/Argon-/mpv-config>
-- <https://artoriuz.github.io/blog/mpv_upscaling.html>
+- <https://artoriuz.github.io/blog/mpv_upscaling>
 
 ### Prescalers
 
