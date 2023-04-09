@@ -4,6 +4,13 @@
 
 [![pre-commit.ci](https://results.pre-commit.ci/badge/github/DeadNews/mpv-config/main.svg)](https://results.pre-commit.ci/latest/github/DeadNews/mpv-config/main)
 
+## Installation
+
+```sh
+pipx install dotbot
+dotbot -c install.conf.yaml
+```
+
 ## Links
 
 ### Wikis
