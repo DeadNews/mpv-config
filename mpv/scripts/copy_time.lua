@@ -14,6 +14,7 @@ local function copy_time()
     local time_minutes = time_pos / 60
     time_seg, time_ms = string.format("%.09f", time_seg):match("([^.]*).(.*)")
     time = string.format("%02d:%02d:%02d.%s", time_hours, time_minutes, time_seg, time_ms)
+
     mp.osd_message(string.format("Copied to Clipboard: %s", time))
     set_clipboard(time)
 end
