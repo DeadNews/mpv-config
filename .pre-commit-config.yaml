@@ -21,16 +21,16 @@ repos:
     hooks:
       - id: prettier
 
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.15.0
+    hooks:
+      - id: typos
+
   - repo: https://github.com/python-jsonschema/check-jsonschema
     rev: 0.23.0
     hooks:
       - id: check-github-workflows
       - id: check-renovate
-
-  - repo: https://github.com/crate-ci/typos
-    rev: v1.14.9
-    hooks:
-      - id: typos
 
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.34.0
