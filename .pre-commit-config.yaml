@@ -32,6 +32,11 @@ repos:
       - id: check-github-workflows
       - id: check-renovate
 
+  - repo: https://github.com/mrtazz/checkmake
+    rev: 0.2.2
+    hooks:
+      - id: checkmake
+
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.38.0
     hooks:
