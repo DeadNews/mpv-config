@@ -1,7 +1,15 @@
 -- Copy the video's current time to the clipboard in HH:MM:SS.xxx format.
+-- Default keybinding: F1
+
+--[[
+To configure this script use file ~~/script-opts/copy_time.conf.
+
+Example configuration would be:
+
+copy_method=wayland|xclip|pbcopy|powershell
+--]]
 
 require("mp")
-local msg = require("mp.msg")
 local options = require("mp.options")
 
 local opts = {
@@ -10,7 +18,7 @@ local opts = {
 options.read_options(opts)
 
 local function info(s)
-    msg.info(s)
+    mp.msg.info(s)
     mp.osd_message(s)
 end
 
@@ -37,7 +45,7 @@ local function set_clipboard(text)
     elseif opts.copy_method == "powershell" then
         mp.commandv("run", "powershell", "set-clipboard", text)
     else
-        info("copy_method not in wayland, xclip, pbcopy, powershell")
+        mp.msg.error("Invalid copy_method: ", opts.copy_method)
     end
 end
 
