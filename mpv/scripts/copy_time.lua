@@ -6,14 +6,14 @@ To configure this script use file ~~/script-opts/copy_time.conf.
 
 Example configuration would be:
 
-copy_method=wayland|xclip|pbcopy|powershell
+method=wayland|xclip|pbcopy|powershell
 --]]
 
 require("mp")
 local options = require("mp.options")
 
 local opts = {
-    copy_method = "",
+    method = "",
 }
 options.read_options(opts)
 
@@ -30,22 +30,22 @@ local function timestamp(duration)
 end
 
 local function set_clipboard(text)
-    if opts.copy_method == "wayland" then
+    if opts.method == "wayland" then
         local pipe = io.popen("wl-copy", "w")
         pipe:write(text)
         pipe:close()
-    elseif opts.copy_method == "xclip" then
+    elseif opts.method == "xclip" then
         local pipe = io.popen("xclip -silent -in -selection clipboard", "w")
         pipe:write(text)
         pipe:close()
-    elseif opts.copy_method == "pbcopy" then
+    elseif opts.method == "pbcopy" then
         local pipe = io.popen("pbcopy", "w")
         pipe:write(text)
         pipe:close()
-    elseif opts.copy_method == "powershell" then
+    elseif opts.method == "powershell" then
         mp.commandv("run", "powershell", "set-clipboard", text)
     else
-        mp.msg.error("Invalid copy_method: ", opts.copy_method)
+        mp.msg.error("Invalid method: ", opts.method)
     end
 end
 
