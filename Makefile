@@ -1,12 +1,16 @@
-.PHONY: all clean test
+.PHONY: all clean test default dotbot install checks pc
+
+default: dotbot
 
 dotbot:
 	dotbot -c install.conf.yaml
 
-pc-install:
+install:
 	pre-commit install
 
-pc-run:
+checks: pc
+
+pc:
 	pre-commit run -a
 
 scripts-up:
