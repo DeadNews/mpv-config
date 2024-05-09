@@ -1,6 +1,6 @@
 # Changelog
 
-## [unreleased]
+## [1.0.0-alpha.0] - 2024-05-09
 
 ### 🚀 Features
 
@@ -12,6 +12,10 @@
 - make video looks as the size as original - ([cf71867](https://github.com///commit/cf71867a226791c2ff0fa61fff5d8637e33407a8))
 - update `autoload.lua` - ([37c0ae8](https://github.com///commit/37c0ae8805606fe652638ba0ab4990942ee52c21))
 - dev pr ([#7](https://github.com/DeadNews/mpv-config/issues/7)) - ([e5481e3](https://github.com///commit/e5481e3fad101a8691805ee6bab4656d8111eb0d))
+
+### 📚 Documentation
+
+- _(changelog)_ add `git-cliff` - ([4fbe704](https://github.com///commit/4fbe7041feb5ab25daec922060750a3479a607b0))
 
 ### 🧹 Chores
 
