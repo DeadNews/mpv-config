@@ -2,8 +2,6 @@
 
 > Personal [mpv](https://github.com/mpv-player/mpv) configuration files
 
-[![GitHub: Tag](https://img.shields.io/github/v/tag/deadnews/mpv-config?logo=github&logoColor=white)](https://github.com/deadnews/mpv-config)
-[![Changelog](https://img.shields.io/badge/changelog-gray.svg?logo=github&logoColor=white)](https://github.com/deadnews/mpv-config/blob/main/CHANGELOG.md)
 [![CI: pre-commit](https://results.pre-commit.ci/badge/github/DeadNews/mpv-config/main.svg)](https://results.pre-commit.ci/latest/github/DeadNews/mpv-config/main)
 
 ## Installation
